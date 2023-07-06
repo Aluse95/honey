@@ -1,0 +1,73 @@
+@media (max-width : 576px) {
+  #header .header-top {
+    flex-direction: row-reverse;
+    font-size: 1.3rem;
+  }
+  #header .user,
+  #header .search,
+  #header .hotline,
+  #header .header-menu {
+    display: none !important;
+  }
+  #header .header-main {
+    padding: 0 16px;
+  }
+  #header .header-main .icon-menu{
+    font-size: 2.2rem;
+  }
+  #header .header-info i {
+    padding-left: 0;
+  }
+  #product .price,
+  #product .sale-off,
+  #product .old-price {
+    font-size: 1.6rem;
+  }
+  #list-product .price {
+    font-size: 1.8rem;
+    color: red;
+  }
+  #list-product .old-price,
+  #list-product .percent-sale {
+    display: none;
+  }
+  #post,
+  #footer,
+  #process,
+  #product,
+  #list-product {
+    padding: 40px 0;
+  }
+  #post,
+  #process {
+    padding-bottom: 20px;
+  }
+  #process h2 {
+    margin-bottom: 30px;
+  }
+  #header .sub-container {
+    top: 40px;
+    width: 280px;
+  }
+  #header .sub-container.sub-menu {
+    top: 38px;
+    right: -24px;
+  }
+  .icon-down {
+    font-size: 1.2rem;
+  }
+  #header .sub-container a {
+    padding: 8px 6px;
+  }
+  .sidebar-image {
+    width: 100%;
+  }
+  @keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+}
