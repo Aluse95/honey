@@ -70,7 +70,17 @@
       </div>
       <div class="header-info d-flex justify-content-between">
         <p class="hotline bold m-0">HOTLINE: <span>{{ $web_information->information->hotline ?? '0123456789' }}</span></p>
-        <i class="user fa-solid fa-user"></i>
+        @if (Auth::check())
+          <div>
+            <span class="user-infor py-3">{{ Auth::user()->name }}
+            </span>
+            (<a href="{{ route('frontend.logout') }}"><span>Thoát</span></a>)
+          </div>
+        @else
+          <a href="{{ route('frontend.login') }}">
+            <i class="user fa-solid fa-user text-white"></i>
+          </a>
+        @endif
         <div class="search position-relative">
           <i class="fa-solid fa-magnifying-glass"></i>
           <form class="search-form" action="{{ route('frontend.search.index') }}" method="get">
@@ -80,30 +90,43 @@
         </div>
         <div class="position-relative">
           <i class=" fa-solid fa-cart-shopping position-relative shopping-cart">
-            <div class="cart-number position-absolute">3</div>
+            <div class="cart-number position-absolute">{{ count((array) session('cart') ?? 0) }}</div>
           </i>
           <div class="cart-container p-4">
             <h4 class="bold text-uppercase m-0">Shopping Cart</h4>
             <hr>
-            <ul class="list-unstyled m-0">
-              <li class="cart-item mb-3">
-                <div class="row">
-                  <div class="col-lg-3 col-3">
-                    <a href="#" class="cart-img">
-                      <img class="img-fluid w-100 h-100" src="image/sp1.jpg" alt="product">
-                    </a>
-                  </div>
-                  <div class="col-lg-9 col-9 px-0">
-                    <a href="#" class="cart-title mb-2">Mật ong rừng nguyên chất</a>
-                    <div class="d-flex">
-                      <div class="cart-price bold">150.000 đ</div>
-                      <div class="mx-3">x</div>
-                      <div class="cart-quantity bold">1</div>
+            @php $total = 0 @endphp
+            @if (session('cart'))
+              <ul class="list-unstyled m-0">
+                @foreach (session('cart') as $id => $details)
+                  @php
+                    $total += $details['price'] * $details['quantity'];
+                    $alias = App\Helpers::generateRoute(App\Consts::TAXONOMY['product'],$details['title'], $id, 'detail', 'san-pham');
+                  @endphp
+                  <li class="cart-item mb-3">
+                    <div class="row">
+                      <div class="col-lg-3 col-3">
+                        <a href="{{ $alias }}" class="cart-img">
+                          <img class="img-fluid w-100 h-100" src="{{ $details['image_thumb'] ?? $details['image'] }}" alt="{{ $details['title'] }}">
+                        </a>
+                      </div>
+                      <div class="col-lg-9 col-9 px-0">
+                        <a href="{{ $alias }}" class="cart-title mb-2">{{ $details['title'] }}</a>
+                        <div class="d-flex">
+                          <div class="cart-price bold">{{ isset($details['price']) && $details['price'] > 0 ? number_format($details['price'], 0, ',','.') . ' đ' : __('Contact') }}</div>
+                          <div class="mx-3">x</div>
+                          <div class="cart-quantity bold">{{ $details['quantity'] }}</div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
+                  </li>
+                @endforeach
+              </ul>
+            @endif
+            <a href="{{ route('frontend.order.cart') }}" class="view-cart mt-3">
+              <div class="button">Giỏ hàng</div>
+              <div class="checkout-price">{{ number_format($total, 0, ',','.') . ' đ' }}</div>
+            </a>
           </div>
         </div>
       </div>

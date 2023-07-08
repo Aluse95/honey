@@ -13,6 +13,12 @@ html {
 :root {
   --primary: #ebb722;
 }
+.alert {
+  font-size: 1.4rem;
+}
+.alert .btn-close {
+  margin-top: 4px;
+}
 /******** HEADER ********/
 #header {
   font-size: 1.6rem;
@@ -72,6 +78,7 @@ html {
   border-radius: 100%;
   background-color: var(--primary);
 }
+
 #header .menu-item {
   position: relative;
 }
@@ -143,6 +150,35 @@ html {
   display: block;
   color: #333;
   text-decoration: none;
+}
+#header .view-cart {
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  font-size: 1.6rem;
+  text-decoration: none;
+}
+#header .view-cart .checkout-price {
+  color: #333;
+  font-size: 2rem;
+}
+#header .cart-container .button {
+  text-align: center;
+  width: 100px;
+  height: 36px;
+  line-height: 36px;
+  background-color: var(--primary);
+}
+#content .cart a {
+  color: #333;
+  text-decoration: none;
+}
+#content .cart .fa-trash-can {
+  color: #ed494e;
+}
+#content .cart td {
+  padding: 12px 15px !important;
+  vertical-align: middle !important;
 }
 #header .search-form {
   top: 14px;
@@ -260,6 +296,7 @@ html {
   border: 1px solid var(--primary);
 }
 .add-to-cart {
+  cursor: pointer;
   font-size: 1.6rem;
   padding: 10px 24px;
   color: var(--primary);

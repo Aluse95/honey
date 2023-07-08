@@ -49,8 +49,6 @@ Route::namespace('FrontEnd')->group(function () {
   Route::patch('update-cart', 'OrderController@updateCart')->name('frontend.order.cart.update');
   Route::delete('remove-from-cart', 'OrderController@removeCart')->name('frontend.order.cart.remove');
   Route::post('order-product', 'OrderController@storeOrderProduct')->name('frontend.order.store.product');
-  // Momo Payment
-  Route::post('momo_payment', [CheckoutController::class, 'momo_payment'])->name('frontend.momo');
 
   // User CTV route
   Route::get('/login', 'UserController@loginForm')->name('frontend.login');

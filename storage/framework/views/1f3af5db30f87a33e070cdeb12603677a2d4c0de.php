@@ -57,7 +57,7 @@
                     </div>
                     <div class="product-button d-flex justify-content-between mt-4 mb-2">
                       <a href="<?php echo e($alias); ?>" class="button-detail">Chi tiết</a>
-                      <div class="button-cart">Thêm vào giỏ</div>
+                      <div class="add-to-cart button-cart" data-id="<?php echo e($id); ?>">Thêm vào giỏ</div>
                     </div>
                   </div>
                 </div>

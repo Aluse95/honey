@@ -172,11 +172,11 @@
   };
 
 //  $(function(){
-//    function show_popup(){
-//       $(".click_show_pop").click();
-//    };
-//    window.setTimeout( show_popup, 3000 ); // 5 seconds
-// });
+//     function show_popup(){
+//         $(".click_show_pop").click();
+//     };
+//     window.setTimeout( show_popup, 3000 ); // 5 seconds
+//   });
   const swiper = new Swiper('.swiper', {
     loop: true,
     autoplay: {

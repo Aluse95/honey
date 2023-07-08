@@ -11,6 +11,7 @@
     $price = $product->json_params->price ?? '';
     $price_old = $product->json_params->price_old ?? '';
     $gallery = $product->json_params->gallery_image ?? '';
+    $id = $product->id ?? '';
   ?>
 
   <section id="product">
@@ -67,7 +68,7 @@
               <p class="m-0">Còn hàng</p>
             </div>
             <div class="d-flex mt-4">
-              <div class="add-to-cart me-4">
+              <div class="add-to-cart me-4" data-id="<?php echo e($id); ?>">
                 Thêm giỏ hàng
               </div>
               <div class="buy-now">

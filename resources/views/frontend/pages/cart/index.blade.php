@@ -18,7 +18,7 @@ $image_background = $web_information->image->background_breadcrumbs ?? ($taxonom
 
   <section id="content">
     <div class="content-wrap">
-      <div class="container">
+      <div class="container py-5">
         @if (session('cart'))
           <table class="table cart mb-5">
             <thead>
@@ -26,7 +26,6 @@ $image_background = $web_information->image->background_breadcrumbs ?? ($taxonom
                 <th class="cart-product-remove">&nbsp;</th>
                 <th class="cart-product-thumbnail">&nbsp;</th>
                 <th class="cart-product-name">@lang('Product')</th>
-                <th class="cart-product-color">@lang('Color')</th>
                 <th class="cart-product-price">@lang('Price') </th>
                 <th class="cart-product-quantity">@lang('Quantity')</th>
                 <th class="cart-product-subtotal">@lang('Total')</th>
@@ -43,7 +42,7 @@ $image_background = $web_information->image->background_breadcrumbs ?? ($taxonom
                 <tr class="cart_item" data-id="{{ $id }}">
                   <td class="cart-product-remove">
                     <a href="javascript:void(0)" class="remove remove-from-cart" title="@lang('Remove this item')">
-                      <i class="icon-trash2"></i>
+                      <i class="fa-solid fa-trash-can"></i>
                     </a>
                   </td>
                   <td class="cart-product-thumbnail">
@@ -54,24 +53,6 @@ $image_background = $web_information->image->background_breadcrumbs ?? ($taxonom
                   </td>
                   <td class="cart-product-name">
                     <a href="{{ $url_link }}">{{ $details['title'] }}</a>
-                  </td>
-                  <td class="cart-product-color">
-                    @php
-                      $product = App\Models\CmsPost::where('id', $id)->first();
-                      $color = $product->json_params->color ?? '';
-                    @endphp
-                    @if ($color)
-                    <select name="color" class="form-control select2 update-cart color" style="width: 100%;">
-                      <option value="">@lang('Please select')</option>
-                      @foreach ($color as $key => $item)
-                        @if ($item->name != '')
-                          <option value="{{ $item->name }}">
-                            {{ $item->name }}
-                          </option>
-                        @endif
-                      @endforeach
-                    </select>
-                    @endif
                   </td>
                   <td class="cart-product-price">
                     <span class="amount">
@@ -96,16 +77,8 @@ $image_background = $web_information->image->background_breadcrumbs ?? ($taxonom
                   <div class="row justify-content-between">
                     <div class="col-lg-12">
                       <a href="{{ url()->current() }}" class="button button-3d m-0">@lang('Update Cart')</a>
-
                     </div>
                   </div>
-                </td>
-                <td>
-                  <form action="{{ route('frontend.momo') }}" method="post">
-                    @csrf
-                    <input type="hidden" name="total_momo" value="{{ $total }}" >
-                    <button type="submit" class="btn btn-success mt-4" name="redirect">Thanh toán Momo</button>
-                  </form>
                 </td>
                 <td class="cart-product-subtotal">
                   <span class="amount text-danger">
