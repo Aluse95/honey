@@ -39,7 +39,10 @@
 
           <div class="col-lg-3 col-md-3 col-6 px-3 mb-3">
             <a href="{{ $alias_child }}" class="product-img">
-              <img class="img-fluid w-100" src="{{ $image_child }}" alt="{{ $title_child }}">
+              <img class="lazyload img-fluid"
+                    src="{{ asset('images/lazyload.gif')}}"
+                    data-src="{{ $image_child }}" alt="{{ $title_child }}"
+                  />
             </a>
             <a href="{{ $alias_child }}" class="d-block bold mt-4 text-center">{{ $title_child }}</a>
             <div class="d-flex align-items-center justify-content-center bold">

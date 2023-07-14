@@ -71,7 +71,7 @@ class Consts
         'resource' => 6,
         'related' => 6,
         'sidebar' => 4,
-        'search' => 6,
+        'search' => 9,
         'other' => 6,
     ];
 

@@ -20,7 +20,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-9 py-5">
-          <div id="shop" class="shop row grid-container gutter-20" data-layout="fitRows">
+          <div class="row">
             @foreach ($posts as $item)
               @php
                 $id = $item->id;

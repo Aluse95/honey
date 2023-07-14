@@ -20,8 +20,9 @@
             ?>
 
             <div class="swiper-slide">
-              <img class="img-fluid w-100 h-100" src="<?php echo e($image); ?>" alt="image banner">
+              <img class="img-fluid w-100 h-100" src="<?php echo e($image); ?>" alt="<?php echo e($title); ?>"/>
             </div>
+            
           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         <?php endif; ?>
       </div>

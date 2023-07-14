@@ -46,7 +46,7 @@
       <div class="col-lg-3 col-md-3 col-6">
         <div class="px-md-5 px-3">
           <h3 class="text-uppercase bold mb-5">Dịch vụ hỗ trợ</h3>
-          <div class="mt-5">
+          <div class="mt-5 payment">
             <img class="img-fluid w-100" src="<?php echo e(asset('images/payment.jpg')); ?>" alt="payment">
           </div>
         </div>

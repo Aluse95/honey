@@ -8,17 +8,15 @@ $(function() {
     }
   })
   $('#header .shopping-cart').click(function() {
-    if($(this).parent().children('.cart-container').css('display') == 'none') {
-      $(this).parent().children('.cart-container').css('display' , 'block')
-    } else {
-      $(this).parent().children('.cart-container').hide()
-    }
+    $(this).children('.cart-container').show()
   })
+  
   $(window).click(function(e) {
-    if (!$('.shopping-cart').is(e.target) && $('.shopping-cart').has(e.target).length == 0) {
+    if (!$('.shopping-cart').is(e.target) && !$('.shopping-cart').has(e.target).length) {
       $('.cart-container').hide();
     }
   })
+
   $('.icon-menu').click(function() {
     $('.overlay').show();
     $('.menu-mobile').css('transform','translateX(0)');
@@ -43,6 +41,32 @@ $(function() {
     value++
     $(this).parent().children('.number').val(value)
   })
+  $('.minus').click(function() {
+    let value = $(this).parent().children('.qty').val()
+    if(value > 1) {
+      value--
+      $(this).parent().children('.qty').val(value).change()
+    }
+  })
+  $('.plus').click(function() {
+    let value = $(this).parent().children('.qty').val()
+    value++
+    $(this).parent().children('.qty').val(value).change()
+  })
+  $('.modal').click(function(e) {
+    if (!$('.card').is(e.target) && $('.card').has(e.target).length == 0) {
+      $('.modal').hide();
+    }
+  })
+  $('#header .user').click(function() {
+    $('.modal').toggle()
+  })
+  $('.btn-register').click(function() {
+    $('#modal-sign-up').hide()
+    $('#modal-register').show()
+  })
+  $('.sub-container').parent().children().children('.icon-down').html('<i class="fa-solid fa-chevron-down"></i>')
 })
+
 
 

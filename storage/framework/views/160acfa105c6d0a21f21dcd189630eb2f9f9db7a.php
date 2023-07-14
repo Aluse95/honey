@@ -10,17 +10,17 @@
             id="login_form"
             name="login_form"
             class="mb-0 row"
-            action="{{ route('frontend.login.post') }}"
+            action="<?php echo e(route('frontend.login.post')); ?>"
             method="post"
           >
-          @csrf
+          <?php echo csrf_field(); ?>
             <div class="col-12 mb-3">
               <input
                 type="text"
                 name="email"
                 value=""
                 class="form-control not-dark"
-                placeholder="@lang('Username')"
+                placeholder="<?php echo app('translator')->get('Username'); ?>"
                 required
               />
             </div>
@@ -31,7 +31,7 @@
                 name="password"
                 value=""
                 class="form-control not-dark"
-                placeholder="@lang('Password')"
+                placeholder="<?php echo app('translator')->get('Password'); ?>"
               />
             </div>
     
@@ -42,30 +42,22 @@
                 name="login-form-submit"
                 value="login"
               >
-                @lang('Login')
+                <?php echo app('translator')->get('Login'); ?>
               </button>
             </div>
-            {{-- <p class="text-center mt-3 mb-0">Hoặc đăng nhập bằng</p>
-            <div class="col-12 mt-4 social-login d-flex justify-content-center">
-              <div class="facebook-login">
-                <a href="{{ route('frontend.provider', ['provider' => 'facebook']) }}">Facebook</a>
-              </div>
-              <div class="google-login">
-                <a href="{{ route('frontend.provider', ['provider' => 'google']) }}">Google</a>
-              </div>
-            </div> --}}
+            
             <div class="col-12 form-group login_result d-none">
                 <div class="alert alert-warning" role="alert">
-                  @lang('Processing...')
+                  <?php echo app('translator')->get('Processing...'); ?>
                 </div>
               </div>
     
-              @php
+              <?php
                 $referer = request()->headers->get('referer');
                 $current = url()->full();
-              @endphp
-              <input type="hidden" name="referer" value="{{ $referer }}">
-              <input type="hidden" name="current" value="{{ $current }}">
+              ?>
+              <input type="hidden" name="referer" value="<?php echo e($referer); ?>">
+              <input type="hidden" name="current" value="<?php echo e($current); ?>">
           </form>
         </div>
         <div class="card-footer py-5 text-center">
@@ -80,24 +72,24 @@
     <div class="wrap-card">
       <div class="card m-auto" style="max-width: 540px">
         <div class="card-header py-5 text-center">
-          <h3 class="mb-0 fw-normal">@lang('Signup an account')</h3>
+          <h3 class="mb-0 fw-normal"><?php echo app('translator')->get('Signup an account'); ?></h3>
         </div>
         <div class="card-body mx-auto py-5" style="max-width: 70%">
           <form
             id="signup_form"
             name="signup_form"
             class="mb-0 row"
-            action="{{ route('frontend.signup.post') }}"
+            action="<?php echo e(route('frontend.signup.post')); ?>"
             method="post"
           >
-          @csrf
+          <?php echo csrf_field(); ?>
             <div class="col-12">
               <input
                 type="text"
                 name="name"
                 value=""
                 class="form-control not-dark"
-                placeholder="@lang('Username')"
+                placeholder="<?php echo app('translator')->get('Username'); ?>"
                 required
               />
             </div>
@@ -108,7 +100,7 @@
                 name="phone"
                 value=""
                 class="form-control not-dark"
-                placeholder="@lang('Phone')"
+                placeholder="<?php echo app('translator')->get('Phone'); ?>"
                 required
               />
             </div>
@@ -119,7 +111,7 @@
                 name="email"
                 value=""
                 class="form-control not-dark"
-                placeholder="@lang('Email')"
+                placeholder="<?php echo app('translator')->get('Email'); ?>"
                 required
               />
             </div>
@@ -130,7 +122,7 @@
                 name="password"
                 value=""
                 class="form-control not-dark"
-                placeholder="@lang('Password')"
+                placeholder="<?php echo app('translator')->get('Password'); ?>"
               />
             </div>
     
@@ -140,21 +132,21 @@
                 name="login-form-submit"
                 value="login"
               >
-                @lang('Signup an account')
+                <?php echo app('translator')->get('Signup an account'); ?>
               </button>
             </div>
               <div class="col-12 form-group signup_result d-none">
                 <div class="alert alert-warning" role="alert">
-                  @lang('Processing...')
+                  <?php echo app('translator')->get('Processing...'); ?>
                 </div>
               </div>
     
-              @php
+              <?php
                 $referer = request()->headers->get('referer');
                 $current = url()->full();
-              @endphp
-              <input type="hidden" name="referer" value="{{ $referer }}">
-              <input type="hidden" name="current" value="{{ $current }}">
+              ?>
+              <input type="hidden" name="referer" value="<?php echo e($referer); ?>">
+              <input type="hidden" name="current" value="<?php echo e($current); ?>">
           </form>
         </div>
       </div>
@@ -163,3 +155,4 @@
 </div>
 
 
+<?php /**PATH D:\xampp\htdocs\honey\resources\views/frontend/components/popup/login.blade.php ENDPATH**/ ?>

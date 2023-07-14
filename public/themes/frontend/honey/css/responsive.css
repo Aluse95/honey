@@ -53,6 +53,17 @@
     top: 38px;
     right: -24px;
   }
+  #footer .logo-footer img {width: 180px;height: 90px;}
+  #footer .payment img {width: 160px !important;height: 105px;}
+  #product .slider-for img {
+    width: 188px !important;
+    height: 188px;
+  }
+  #product .slider-nav img {
+    width: 60px;
+    height: 60px;
+  }
+  #list-product .product-img img {height: 176px !important;width: 176px !important;}
   .icon-down {
     font-size: 1.2rem;
   }
@@ -62,6 +73,8 @@
   .sidebar-image {
     width: 100%;
   }
+  #post .product-img img{height: 176px;width: 176px;}
+
   @keyframes fadeIn {
     from {
         opacity: 0;

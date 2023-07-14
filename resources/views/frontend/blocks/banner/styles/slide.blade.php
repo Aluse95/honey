@@ -20,8 +20,14 @@
             @endphp
 
             <div class="swiper-slide">
-              <img class="img-fluid w-100 h-100" src="{{ $image }}" alt="image banner">
+              <img class="img-fluid w-100 h-100" src="{{ $image }}" alt="{{ $title }}"/>
             </div>
+            {{-- <div class="swiper-slide">
+              <img class="lazyload img-fluid w-100 h-100"
+                    src="{{ asset('images/lazyload.gif')}}"
+                    data-src="{{ $image }}" alt="{{ $title }}"
+                  />
+            </div> --}}
           @endforeach
         @endif
       </div>

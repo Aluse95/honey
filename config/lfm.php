@@ -56,6 +56,7 @@ return [
                 'image/png',
                 'image/gif',
                 'image/svg+xml',
+                'image/webp',
             ],
         ],
 
@@ -69,6 +70,7 @@ return [
                 'image/png',
                 'image/gif',
                 'image/svg+xml',
+                'image/webp',
             ],
         ],
 
@@ -82,6 +84,7 @@ return [
                 'image/png',
                 'image/gif',
                 'image/svg+xml',
+                'image/webp',
             ],
         ],
 
@@ -95,6 +98,7 @@ return [
                 'image/png',
                 'image/gif',
                 'image/svg+xml',
+                'image/webp',
             ],
         ],
 
@@ -108,6 +112,7 @@ return [
                 'image/png',
                 'image/gif',
                 'image/svg+xml',
+                'image/webp',
             ],
         ],
 
@@ -121,6 +126,7 @@ return [
                 'image/png',
                 'image/gif',
                 'image/svg+xml',
+                'image/webp',
             ],
         ],
 
@@ -134,6 +140,7 @@ return [
                 'image/png',
                 'image/gif',
                 'image/svg+xml',
+                'image/webp',
             ],
         ],
 
@@ -149,6 +156,7 @@ return [
                 'image/svg+xml',
                 'image/x-icon',
                 'image/vnd.microsoft.icon',
+                'image/webp',
             ],
         ],
 
@@ -162,6 +170,7 @@ return [
                 'image/png',
                 'image/gif',
                 'image/svg+xml',
+                'image/webp',
             ],
         ],
         'page' => [
@@ -174,6 +183,7 @@ return [
                 'image/png',
                 'image/gif',
                 'image/svg+xml',
+                'image/webp',
             ],
         ],
 
@@ -187,6 +197,7 @@ return [
                 'image/png',
                 'image/gif',
                 'image/svg+xml',
+                'image/webp',
             ],
         ],
 
@@ -200,6 +211,7 @@ return [
                 'image/png',
                 'image/gif',
                 'image/svg+xml',
+                'image/webp',
             ],
         ],
 
@@ -213,6 +225,7 @@ return [
                 'image/png',
                 'image/gif',
                 'image/svg+xml',
+                'image/webp',
             ],
         ],
 

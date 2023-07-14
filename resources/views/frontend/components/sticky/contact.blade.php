@@ -197,7 +197,7 @@
       <div class="phone-vr-circle-fill"></div>
       <div class="phone-vr-img-circle">
         <a target="_blank" href="{{ $web_information->social->zalo }}">
-          <img src="{{ asset('images/zalo.png') }}" />
+          <img src="{{ asset('images/zalo.png') }}" alt="zalo"/>
         </a>
       </div>
     </div>
@@ -211,7 +211,7 @@
         <div class="phone-vr-circle-fill"></div>
         <div class="phone-vr-img-circle">
           <a href="tel:{{ $web_information->social->call_now }}">
-            <img src="{{ asset('images/phone.png') }}" />
+            <img src="{{ asset('images/phone.png') }}" alt="phone"/>
           </a>
         </div>
       </div>
@@ -221,7 +221,5 @@
         <span class="text-phone">{{ $web_information->social->call_now }}</span>
       </a>
     </div>
-
-    <!-- end phone -->
   @endif
 </div>

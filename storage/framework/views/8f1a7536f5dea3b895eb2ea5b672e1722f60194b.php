@@ -36,7 +36,10 @@
 
           <div class="col-lg-3 col-md-3 col-6 px-3 mb-3">
             <a href="<?php echo e($alias); ?>" class="product-img">
-              <img class="img-fluid w-100" src="<?php echo e($image); ?>" alt="<?php echo e($title); ?>">
+              <img class="lazyload img-fluid"
+                    src="<?php echo e(asset('images/lazyload.gif')); ?>"
+                    data-src="<?php echo e($image); ?>" alt="<?php echo e($title); ?>"
+                  />
             </a>
             <p class="my-3 date">Thứ 3 26/06/2023</p>
             <a href="<?php echo e($alias); ?>" class="d-block bold my-3"><?php echo e($title); ?></a>

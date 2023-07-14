@@ -197,7 +197,7 @@
       <div class="phone-vr-circle-fill"></div>
       <div class="phone-vr-img-circle">
         <a target="_blank" href="<?php echo e($web_information->social->zalo); ?>">
-          <img src="<?php echo e(asset('images/zalo.png')); ?>" />
+          <img src="<?php echo e(asset('images/zalo.png')); ?>" alt="zalo"/>
         </a>
       </div>
     </div>
@@ -211,7 +211,7 @@
         <div class="phone-vr-circle-fill"></div>
         <div class="phone-vr-img-circle">
           <a href="tel:<?php echo e($web_information->social->call_now); ?>">
-            <img src="<?php echo e(asset('images/phone.png')); ?>" />
+            <img src="<?php echo e(asset('images/phone.png')); ?>" alt="phone"/>
           </a>
         </div>
       </div>
@@ -221,8 +221,6 @@
         <span class="text-phone"><?php echo e($web_information->social->call_now); ?></span>
       </a>
     </div>
-
-    <!-- end phone -->
   <?php endif; ?>
 </div>
 <?php /**PATH D:\xampp\htdocs\honey\resources\views/frontend/components/sticky/contact.blade.php ENDPATH**/ ?>

@@ -26,6 +26,7 @@ $image_background = $web_information->image->background_breadcrumbs ?? ($taxonom
                 <th class="cart-product-remove">&nbsp;</th>
                 <th class="cart-product-thumbnail">&nbsp;</th>
                 <th class="cart-product-name">@lang('Product')</th>
+                <th class="cart-product-name">@lang('Size')</th>
                 <th class="cart-product-price">@lang('Price') </th>
                 <th class="cart-product-quantity">@lang('Quantity')</th>
                 <th class="cart-product-subtotal">@lang('Total')</th>
@@ -54,13 +55,18 @@ $image_background = $web_information->image->background_breadcrumbs ?? ($taxonom
                   <td class="cart-product-name">
                     <a href="{{ $url_link }}">{{ $details['title'] }}</a>
                   </td>
+                  <td class="cart-product-size">
+                    <span class="amount">
+                      {{ $details['size'] ?? '' }} g
+                    </span>
+                  </td>
                   <td class="cart-product-price">
                     <span class="amount">
                       {{ isset($details['price']) && $details['price'] > 0 ? number_format($details['price']) : __('Contact') }}
                     </span>
                   </td>
                   <td class="cart-product-quantity">
-                    <div class="quantity">
+                    <div class="quantity d-flex">
                       <input type="button" value="-" class="minus">
                       <input type="text" name="quantity" value="{{ $details['quantity'] }}" autocomplete="off"
                         class="qty update-cart" />
@@ -74,9 +80,9 @@ $image_background = $web_information->image->background_breadcrumbs ?? ($taxonom
               @endforeach
               <tr class="cart_item">
                 <td colspan="5">
-                  <div class="row justify-content-between">
+                  <div class="row justify-content-between my-4">
                     <div class="col-lg-12">
-                      <a href="{{ url()->current() }}" class="button button-3d m-0">@lang('Update Cart')</a>
+                      <a href="{{ url()->current() }}" class="button btn-update m-0">@lang('Update Cart')</a>
                     </div>
                   </div>
                 </td>
@@ -92,7 +98,7 @@ $image_background = $web_information->image->background_breadcrumbs ?? ($taxonom
           </table>
           <div class="row col-mb-30">
             <div class="col-lg-12">
-              <h4 class="text-uppercase">@lang('Submit Order Cart')</h4>
+              <h4 class="text-uppercase mb-4">@lang('Submit Order Cart')</h4>
               <form class="row" method="POST" action="{{ route('frontend.order.store.product') }}">
                 @csrf
                 <div class="col-md-4 form-group">
@@ -110,25 +116,25 @@ $image_background = $web_information->image->background_breadcrumbs ?? ($taxonom
                   <input type="text" class="sm-form-control" placeholder="@lang('Phone') *" id="phone"
                     name="phone" required value="{{ $user_auth->phone ?? old('phone') }}" />
                 </div>
-                <div class="col-md-4 form-group">
+                <div class="col-md-4 form-group mt-4">
                   <label for="affiliate_code">@lang('Affiliate code')</label>
                   <input type="text" id="affiliate_code" name="affiliate_code"
                     value="{{ $user_auth->affiliate_code ?? old('affiliate_code') }}" class="sm-form-control"
                     placeholder="@lang('Affiliate code')" />
                 </div>
-                <div class="col-md-8 form-group">
+                <div class="col-md-8 form-group mt-4">
                   <label for="address">@lang('Address')</label>
                   <input type="text" class="sm-form-control" placeholder="@lang('Address')" id="address"
                     name="address" value="{{ old('address') }}" />
                 </div>
 
-                <div class="col-md-12 form-group">
+                <div class="col-md-12 form-group mt-4">
                   <label for="customer_note">@lang('Content note')</label>
-                  <textarea class="sm-form-control" id="customer_note" name="customer_note" rows="5" cols="30"
+                  <textarea id="customer_note" name="customer_note" rows="5" cols="30"
                     placeholder="@lang('Content note')" autocomplete="off">{{ old('customer_note') }}</textarea>
                 </div>
                 <div class="col-12 form-group">
-                  <button type="submit" class="button button-3d m-0">@lang('Submit Order')</button>
+                  <button type="submit" class="button btn-update mt-5">@lang('Submit Order')</button>
                 </div>
               </form>
             </div>

@@ -3,7 +3,8 @@
 <script src="<?php echo e(asset('themes/frontend/honey/js/bootstrap.min.js')); ?>"></script>
 <script src="<?php echo e(asset('themes/frontend/honey/js/jquery.js')); ?>"></script>
 <script src="<?php echo e(asset('themes/frontend/honey/js/slick.min.js')); ?>"></script>
-<script src="<?php echo e(asset('themes/frontend/honey/js/style.js')); ?>"></script>
+<script async src="<?php echo e(asset('themes/frontend/honey/js/style.js')); ?>"></script>
+<script src="<?php echo e(asset('themes/frontend/honey/js/lazysizes.min.js')); ?>"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
 <script>
@@ -86,6 +87,7 @@
       let _root = $(this);
       let _html = _root.html();
       let _id = _root.attr("data-id");
+      let _size = $("input[name='size']:checked").val()
       let _quantity = _root.attr("data-quantity") ?? $("#quantity").val();
       if (_id > 0) {
         _root.html("<?php echo app('translator')->get('Processing...'); ?>");
@@ -96,7 +98,8 @@
           data: {
             "_token": "<?php echo e(csrf_token()); ?>",
             "id": _id,
-            "quantity": _quantity
+            "quantity": _quantity,
+            "size": _size,
           },
           success: function(data) {
             _root.html(_html);
@@ -171,12 +174,12 @@
     return array.filter((item) => fields.some((field) => item[field] === value));
   };
 
-//  $(function(){
-//     function show_popup(){
-//         $(".click_show_pop").click();
-//     };
-//     window.setTimeout( show_popup, 3000 ); // 5 seconds
-//   });
+  //  $(function(){
+  //     function show_popup(){
+  //         $(".click_show_pop").click();
+  //     };
+  //     window.setTimeout( show_popup, 3000 ); // 5 seconds
+  //   });
   const swiper = new Swiper('.swiper', {
     loop: true,
     autoplay: {
@@ -212,6 +215,91 @@
     var slideno = $(this).data('slide');
     $('.slider-nav').slick('slickGoTo', slideno - 1);
   });
+
+  //Login
+  $(function() {
+    $("#login_form").submit(function(e) {
+      $(".login_result .alert").text("<?php echo app('translator')->get('Processing...'); ?>");
+      $(".login_result").removeClass('d-none');
+      e.preventDefault();
+      var form = $(this);
+      var url = form.attr('action');
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: form.serialize(),
+        success: function(response) {
+          form[0].reset();
+          if (response.message === 'success') {
+            if (response.data.url != '') {
+              window.location.href = response.data.url;
+            } else {
+              location.reload();
+            }
+          } else {
+            $("login_result .alert").html(response.message);
+          }
+
+        },
+        error: function(response) {
+          // Get errors
+          console.log(response);
+          var errors = response.responseJSON.message;
+          console.log(errors);
+          if (errors === 'CSRF token mismatch.') {
+            $(".login_result .alert").html("<?php echo app('translator')->get('CSRF token mismatch.'); ?>");
+          } else if (errors === 'The given data was invalid.') {
+            $(".login_result .alert").html("<?php echo app('translator')->get('The given data was invalid.'); ?>");
+          } else {
+            $(".login_result .alert").html(errors);
+          }
+        }
+      });
+    });
+  });
+  //Signup
+  $("#signup_form").submit(function(e) {
+      $(".signup_result .alert").text("<?php echo app('translator')->get('Processing...'); ?>");
+      $(".signup_result").removeClass('d-none');
+
+      e.preventDefault();
+      var form = $(this);
+      var url = form.attr('action');
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: form.serialize(),
+        success: function(response) {
+          form[0].reset();
+          location.reload();
+        },
+        error: function(response) {
+          console.log(response);
+          // Get errors
+          if (typeof response.responseJSON.errors !== 'undefined') {
+            var errors = response.responseJSON.errors;
+            // Foreach and show errors to html
+            var elementErrors = '';
+            $.each(errors, function(index, item) {
+              if (item === 'CSRF token mismatch.') {
+                item = "<?php echo app('translator')->get('CSRF token mismatch.'); ?>";
+              }
+              elementErrors += '<p>' + item + '</p>';
+            });
+            $(".signup_result .alert").html(elementErrors);
+          } else {
+            var errors = response.responseJSON.message;
+            if (errors === 'CSRF token mismatch.') {
+              $(".signup_result .alert").html("<?php echo app('translator')->get('CSRF token mismatch.'); ?>");
+            } else if (errors === 'The given data was invalid.') {
+              $(".signup_result .alert").html("<?php echo app('translator')->get('The given data was invalid.'); ?>");
+            } else {
+              $(".signup_result .alert").html(errors);
+            }
+          }
+        }
+      });
+    });
 </script>
  
 <?php if(isset($web_information->source_code->footer)): ?>

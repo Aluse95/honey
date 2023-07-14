@@ -48,26 +48,7 @@
       </div>
 
     <?php endif; ?>
-    <div class="product-filter">
-      <h4 class="bold my-3">Lọc sản phẩm</h4>
-      <ul class="shop-sorting list-unstyled ps-2">
-        <li class="widget-filter-reset active-filter">
-          <a href="#" data-sort-by="original-order">Clear</a>
-        </li>
-        <li>
-          <i class="fa-solid fa-chevron-right"></i>
-          <a href="#" data-sort-by="name">Tên</a>
-        </li>
-        <li>
-          <i class="fa-solid fa-chevron-right"></i>
-          <a href="#"data-sort-by="price_lh">Giá: Thấp đến cao</a>
-        </li>
-        <li>
-          <i class="fa-solid fa-chevron-right"></i>
-          <a href="#" data-sort-by="price_hl">Giá: Cao đến thấp</a>
-        </li>
-      </ul>
-    </div>
+    
     <?php
       $params_product['status'] = App\Consts::POST_STATUS['active'];
       $params_product['is_type'] = App\Consts::POST_TYPE['product'];

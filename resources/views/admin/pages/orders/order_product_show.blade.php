@@ -80,7 +80,6 @@
           </div>
         @endisset
 
-
         <form role="form" action="{{ route(Request::segment(2) . '.update', $detail->id) }}" method="POST">
           @csrf
           @method('PUT')
@@ -191,10 +190,10 @@
             <table class="table table-hover table-bordered">
               <thead>
                 <tr>
-                  <th>@lang('#')</th>
+                  <th>@lang('No.')</th>
                   <th>@lang('Product')</th>
+                  <th>@lang('Size')</th>
                   <th>@lang('Price')</th>
-                  <th>@lang('Color')</th>
                   <th>@lang('Quantity')</th>
                   <th>@lang('Total')</th>
                   <th>@lang('Action')</th>
@@ -220,11 +219,11 @@
                         </a>
                       </td>
                       <td>
-                        <input class="form-control" name="price" type="number" value="{{ $row->price }}"
+                        <input class="form-control" name="size" type="text" value="{{ $row->size }}"
                           min="0" onchange="this.form.submit();">
                       </td>
                       <td>
-                        <input class="form-control" name="color" type="text" value="{{ $row->color }}"
+                        <input class="form-control" name="price" type="number" value="{{ $row->price }}"
                           min="0" onchange="this.form.submit();">
                       </td>
                       <td>

@@ -4,7 +4,6 @@
                       ->where('is_featured', true)
                       ->where('status', 'active')
                       ->first();
-    // dd($product);
     $title = $product->title ?? '';
     $brief = $product->json_params->brief->{$locale} ?? $product->brief;
     $content = $product->json_params->content->{$locale} ?? $product->content;
@@ -21,14 +20,20 @@
           <div class="slider slider-for w-50 m-auto mb-5">
             @foreach ($gallery as $key => $value)
             <div>
-              <img class="img-fluid w-100" src="{{ $value }}" alt="product image">
+              <img class="lazyload img-fluid w-100"
+                    src="{{ asset('images/lazyload.gif')}}"
+                    data-src="{{ $value }}" alt="{{ $title }}"
+                  />
             </div>
             @endforeach
           </div>
           <div class="slider slider-nav pt-4">
             @foreach ($gallery as $key => $value)
             <div>
-              <img class="img-fluid w-75 m-auto" src="{{ $value }}" alt="product image">
+              <img class="lazyload img-fluid m-auto"
+                    src="{{ asset('images/lazyload.gif')}}"
+                    data-src="{{ $value }}" alt="{{ $title }}"
+                  />
             </div>
             @endforeach
           </div>
@@ -49,18 +54,18 @@
             <p>Kích thước</p>
             <div class="d-flex">
               <div class="product-size">
-                <input type="radio" name="size" id="size1" checked class="d-none">
+                <input type="radio" name="size" id="size1" checked class="d-none" value="200">
                 <label for="size1"><div>200g</div></label><br>
               </div>
               <div class="product-size ms-3">
-                <input type="radio" name="size" id="size2" class="d-none">
+                <input type="radio" name="size" id="size2" class="d-none" value="500">
                 <label for="size2"><div>500g</div></label><br>
               </div>
             </div>
             <div class="d-flex align-items-center pt-4">
               <div class="product-number d-flex align-items-center me-4">
                 <button class="number-sub">-</button>
-                <input type="number" class="number" min="1" name="number" value="1">
+                <input type="number" class="number" min="1" id="quantity" name="number" value="1">
                 <button class="number-add">+</button>
               </div>
               <p class="m-0">Còn hàng</p>
@@ -69,9 +74,9 @@
               <div class="add-to-cart me-4" data-id="{{ $id }}">
                 Thêm giỏ hàng
               </div>
-              <div class="buy-now">
+              {{-- <div class="buy-now">
                 Mua ngay
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>

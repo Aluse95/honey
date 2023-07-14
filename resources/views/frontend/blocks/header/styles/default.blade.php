@@ -1,7 +1,7 @@
 <div id="header">
-  <div class="header-top" style="background-image: url({{ asset('images/header.jpg') }})">
+  <div class="header-top" style="background-image: url({{ asset('images/header.webp') }})">
     <div class="wrap-icon">
-      <img src="{{ asset('images/bee.png') }}" class="img-fluid w-100 h-100" alt="icon-bee">
+      <img src="{{ asset('images/bee1.webp') }}" class="img-fluid w-100 h-100" alt="icon-bee">
     </div>
     <p class="m-0 bold">Cung cấp và phân phối mật ong thiên nhiên</p>
   </div>
@@ -21,7 +21,7 @@
                   $title = $item->json_params->name->{$locale} ?? $item->name;
                   $url = $item->url_link;
 
-                  $content .= '<li class="menu-item me-5"><a class="menu-link" href="' . $url . '">' . $title . '</a>';
+                  $content .= '<li class="menu-item me-5"><a class="menu-link" href="' . $url . '">' . $title . '<span class="icon-down ms-3"></span></a>';
                     if($item->sub > 0) {
                       $content .= '<ul class="sub-container list-unstyled m-0">';
                       foreach ($menu as $item_sub) {
@@ -29,7 +29,7 @@
                         if($item_sub->parent_id == $item->id) {
                           $title = $item_sub->json_params->name->{$locale} ?? $item_sub->name;
                           $url = $item_sub->url_link;
-                          $content .= '<li class="menu-item"><a class="menu-link" href="' . $url . '">' . $title . '</a>';
+                          $content .= '<li class="menu-item"><a class="menu-link" href="' . $url . '">' . $title . '<span class="icon-down"></span></a>';
                           if ($item_sub->sub > 0) {
                             $content .= '<ul class="sub-container sub-menu list-unstyled m-0">';
                             foreach ($menu as $item_sub_2) {
@@ -68,18 +68,15 @@
             class="img-fluid w-100" alt="Header Logo"
         /></a>
       </div>
-      <div class="header-info d-flex justify-content-between">
-        <p class="hotline bold m-0">HOTLINE: <span>{{ $web_information->information->hotline ?? '0123456789' }}</span></p>
+      <div class="header-info d-flex justify-content-between align-items-center">
+        <p class="hotline bold m-0 me-3">HOTLINE: <span>{{ $web_information->information->hotline ?? '' }}</span></p>
         @if (Auth::check())
           <div>
-            <span class="user-infor py-3">{{ Auth::user()->name }}
-            </span>
-            (<a href="{{ route('frontend.logout') }}"><span>Thoát</span></a>)
+            {{ Auth::user()->name }}
+            (<a href="{{ route('frontend.logout') }}" class="text-white">Thoát</a>)
           </div>
         @else
-          <a href="{{ route('frontend.login') }}">
-            <i class="user fa-solid fa-user text-white"></i>
-          </a>
+          <i class="user fa-solid fa-user text-white"></i>
         @endif
         <div class="search position-relative">
           <i class="fa-solid fa-magnifying-glass"></i>
@@ -88,8 +85,8 @@
               class="form-control" />
           </form>
         </div>
-        <div class="position-relative">
-          <i class=" fa-solid fa-cart-shopping position-relative shopping-cart">
+        <div class="position-relative shopping-cart">
+          <i class=" fa-solid fa-cart-shopping position-relative">
             <div class="cart-number position-absolute">{{ count((array) session('cart') ?? 0) }}</div>
           </i>
           <div class="cart-container p-4">
@@ -166,7 +163,7 @@
                 $title = $item->json_params->name->{$locale} ?? $item->name;
                 $url = $item->url_link;
 
-                $content .= '<li class="menu-item py-3"><a class="menu-link" href="' . $url . '">' . $title . '</a>';
+                $content .= '<li class="menu-item py-3"><a class="menu-link" href="' . $url . '">' . $title . '<span class="icon-down ms-3"></span></a>';
                   if($item->sub > 0) {
                     $content .= '<ul class="sub-container list-unstyled m-0">';
                     foreach ($menu as $item_sub) {
@@ -174,7 +171,7 @@
                       if($item_sub->parent_id == $item->id) {
                         $title = $item_sub->json_params->name->{$locale} ?? $item_sub->name;
                         $url = $item_sub->url_link;
-                        $content .= '<li class="menu-item"><a class="menu-link" href="' . $url . '">' . $title . '</a>';
+                        $content .= '<li class="menu-item"><a class="menu-link" href="' . $url . '">' . $title . '<span class="icon-down"></span></a>';
                         if ($item_sub->sub > 0) {
                           $content .= '<ul class="sub-container sub-menu list-unstyled m-0">';
                           foreach ($menu as $item_sub_2) {
@@ -204,7 +201,10 @@
     </ul>
   </div>
 </div>
+@if (!Auth::guard('web')->check())
+  @include('frontend.components.popup.login')
+@endif
          
 
-
+{{-- <i class="fa-solid fa-chevron-down"></i> --}}
 

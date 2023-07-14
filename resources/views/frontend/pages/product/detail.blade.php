@@ -116,111 +116,29 @@
                     <span class="detail-title">Mua hàng chính hãng tại: 096 735 0808</span>
                   </li>
                 </ul>
-                <form class="cart mb-4 d-flex align-items-center" method="post">
-                  <div class="product-number d-flex align-items-center me-4">
-                    <input type="button" value="-" class="minus number-sub" />
-                    <input type="number" step="1" class="number" min="1" name="number" value="1">
-                    <input type="button" value="+" class="plus number-add" />
+                <form class="cart mb-4" method="post">
+                  <div class="d-flex mb-4">
+                    <div class="product-size">
+                      <input type="radio" name="size" id="size1" checked class="d-none" value="200">
+                      <label for="size1"><div>200g</div></label><br>
+                    </div>
+                    <div class="product-size ms-3">
+                      <input type="radio" name="size" id="size2" class="d-none" value="500">
+                      <label for="size2"><div>500g</div></label><br>
+                    </div>
                   </div>
-                  <p class="m-0">Còn hàng</p>
-                  <button type="button" data-id="{{ $detail->id }}" class="add-to-cart ms-3">
-                    @lang('Add to cart')
-                  </button>
+                  <div class="d-flex align-items-center">
+                    <div class="product-number d-flex align-items-center me-4">
+                      <input type="button" value="-" class="minus number-sub" />
+                      <input type="number" step="1" class="number" min="1" id="quantity" name="number" value="1">
+                      <input type="button" value="+" class="plus number-add" />
+                    </div>
+                    <p class="m-0">Còn hàng</p>
+                    <button type="button" data-id="{{ $detail->id }}" class="add-to-cart ms-3">
+                      @lang('Add to cart')
+                    </button>
+                  </div>
                 </form>
-              </div>
-              <div  class="modal fade"id="reviewFormModal"role="dialog"aria-labelledby="reviewFormModalLabel"aria-hidden="true"tabindex="-1">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h4 class="modal-title text-center" id="reviewFormModalLabel">
-                        Form review
-                      </h4>
-                      <button
-                        type="button"
-                        class="btn-close btn-sm"
-                        data-bs-dismiss="modal"
-                        aria-hidden="true"
-                      ></button>
-                    </div>
-                    <div class="modal-body">
-                      <form class="row mb-0" action="{{ route('frontend.review') }}" method="post">
-                        @csrf
-                        <div class="col-6 mb-3">
-                          <label for="template_reviewform_name"
-                            >Tên <small>*</small></label>
-                          <div class="input-group">
-                            <div class="input-group-text">
-                              <i class="icon-user"></i>
-                            </div>
-                            <input required type="text" id="template_reviewform_name" name="name"
-                            value="{{ old('template_reviewform_name') }}"class="form-control required"/>
-                          </div>
-                        </div>
-                        <div class="col-6 mb-3">
-                          <label for="template_reviewform_email"
-                            >Email <small>*</small></label
-                          >
-                          <div class="input-group">
-                            <div class="input-group-text">@</div>
-                            <input required type="email" id="template_reviewform_email" name="email"
-                            value="{{ old('template_reviewform_email') }}" class="required email form-control"/>
-                          </div>
-                        </div>
-
-                        <div class="w-100"></div>
-
-                        <div class="col-12 mb-3">
-                          <label for="template_reviewform_rating"
-                            >Đánh giá</label
-                          >
-                          <select
-                            id="template_reviewform_rating"
-                            name="vote"
-                            class="form-select"
-                          >
-                            <option value="">-- Lựa chọn --</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                          </select>
-                        </div>
-
-                        <div class="w-100"></div>
-
-                        <div class="col-12 mb-3">
-                          <label for="template_reviewform_comment"
-                            >Nội dung <small>*</small></label
-                          >
-                          <textarea required 
-                            class="required form-control"
-                            id="template_reviewform_comment"
-                            name="content"
-                            rows="6"
-                            cols="30"
-                          >{{ old('template_reviewform_comment') }}</textarea>
-                        </div>
-                        <input type="hidden" name="product_id" value="{{ $detail->id }}">
-                        <div class="col-12">
-                          <button class="button button-3d m-0"
-                            type="submit">
-                            Submit Review
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                      >
-                        Đóng
-                      </button>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
             <hr class="mb-1">
@@ -228,19 +146,11 @@
               <div class="col-lg-12 col-12">
                 <div class="tabs mb-0">
                   <ul class="tab-nav d-flex list-unstyled mb-40">
-                    <li class="nav-item active">
-                      <a href="#tabs-1"
-                        ><span class="d-none d-md-inline-block">
-                          @lang('Description')</span
-                        ></a
-                      >
+                    <li class="nav-item active" data-id="#tabs-1">
+                      @lang('Description')
                     </li>
-                    <li class="nav-item">
-                      <a href="#tabs-2"
-                        ><span class="d-none d-md-inline-block">
-                          @lang('Reviews') ({{ count($review) }})
-                        </span>
-                      </a>
+                    <li class="nav-item" data-id="#tabs-2">
+                      @lang('Reviews') ({{ count($review) }})
                     </li>
                   </ul>
                   <div class="tab-container">
@@ -248,57 +158,104 @@
                       {!! $content !!}
                     </div>
                     <div class="tab-content" id="tabs-2">
-                      <div id="reviews" class="clearfix">
-                        <div style="max-height: 300px;overflow-y: auto;" class="over">
-                          <ol class="commentlist clearfix">
-                            @if(($review))
-                              @foreach($review as $review)
-                                <li class="comment even thread-even depth-1"id="li-comment-1">
-                                  <div id="comment-1"class="comment-wrap clearfix">
-                                    <div class="comment-meta">
-                                      <div class="comment-author vcard">
-                                        <span class="comment-avatar clearfix">
-                                          <img alt="Image"src="https://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60" height="60"width="60"/>
-                                        </span>
-                                      </div>
-                                    </div>
-                                    <div class="comment-content clearfix">
-                                      <div style="font-weight: bold;" class="comment-author ">
-                                        {{ $review->name }}
-                                        <span class="d-flex">
-                                          <a>{{ $review->created_at }}</a>
-                                          @if (Auth::user() && Auth::user()->user_type == 'admin' )
-                                            <span style="margin-left: 10px; color:#333">
-                                              <a href="{{ route('admin.remove.review',['id' => $review->id]) }}">Xóa</a>
-                                            </span>
-                                          @endif
-                                        </span>
-                                      </div>
-                                      <p>
-                                        {{ $review->content }}
-                                      </p>
-                                      <div class="review-comment-ratings">
-                                        @if($review->vote && $review->vote >0)
-                                          @for ($i=0; $i <  $review->vote ; $i++)
-                                            <i class="icon-star3" style="color: rgb(195, 255, 0)"></i>
-                                          @endfor
-                                        @endif
-                                      </div>
-                                    </div>
-                                    <div class="clear"></div>
+                      <div id="review">
+                        <ul class="review-list list-unstyled">
+                          <li class="review-detail">
+                            <div class="row">
+                              <div class="col-lg-1 col-1">
+                                <div class="user-avatar m-4">
+                                  <img src="{{ asset('images/avatar.jpg') }}" alt="" class="img-fluid w-100">
+                                </div>
+                              </div>
+                              <div class="col-lg-11 col-11">
+                                <div class="d-flex align-items-center">
+                                  <div class="user-name fs-2">Manh Tuong</div>
+                                  <div class="review-rate ms-5">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
                                   </div>
-                                </li>
-                              @endforeach
-                            @endif
-                          </ol>
+                                </div>
+                                <div class="d-flex">
+                                  <div class="review-time">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    12/07/2023
+                                  </div>
+                                  <div class="review-reply ms-4">Reply</div>
+                                </div>
+                                <div class="review-content">
+                                  Sản phẩm rất tốt, sẽ ủng hộ shop lâu dài!!!
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="review-detail">
+                            <div class="row">
+                              <div class="col-lg-1 col-1">
+                                <div class="user-avatar m-4">
+                                  <img src="{{ asset('images/avatar.jpg') }}" alt="" class="img-fluid w-100">
+                                </div>
+                              </div>
+                              <div class="col-lg-11 col-11">
+                                <div class="d-flex align-items-center">
+                                  <div class="user-name fs-2">Manh Tuong</div>
+                                  <div class="review-rate ms-5">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                  </div>
+                                </div>
+                                <div class="d-flex">
+                                  <div class="review-time">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    12/07/2023
+                                  </div>
+                                  <div class="review-reply ms-4">Reply</div>
+                                </div>
+                                <div class="review-content">
+                                  Sản phẩm rất tốt, sẽ ủng hộ shop lâu dài!!!
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                        <h3 class="my-4">Bình luận về sản phẩm</h3>
+                        <div class="add-review">
+                          <form action="" method="post">
+                            <div class="d-flex">
+                              <div class="form-group w-50 me-4">
+                                <label for="" class="mb-2">@lang('Fullname')</label>
+                                <input type="text"
+                                  class="form-control" name="name" placeholder="Họ và tên">
+                              </div>
+                              <div class="form-group w-50 ms-4">
+                                <label for="" class="mb-2">Email</label>
+                                <input type="email"
+                                  class="form-control" name="email" placeholder="Email">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="" class="mb-2">@lang('Content')</label>
+                              <textarea name="content" class="w-100" cols="30" rows="5" placeholder="@lang('Content')"></textarea>
+                            </div>
+                            <div class="add-vote my-4">
+                              Đánh giá
+                              <select name="vote" class="ms-3">
+                                <option value="1">Tùy chọn</option>
+                                <option value="1">1 Sao</option>
+                                <option value="2">2 Sao</option>
+                                <option value="3">3 Sao</option>
+                                <option value="4">4 Sao</option>
+                                <option value="5">5 Sao</option>
+                              </select>
+                            </div>
+                            <button type="submit" class="mt-4">@lang('Submit')</button>
+                          </form>
                         </div>
-                        <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#reviewFormModal"
-                          class="button m-0 float-end"
-                          >Thêm Review</a
-                        >
                       </div>
                     </div>
                   </div>
@@ -307,7 +264,7 @@
             </div>
           </div>
         </div>
-        <hr>
+
         @if (isset($relatedPosts) && count($relatedPosts) > 0)
           <div>
             <h4 class="text-uppercase bold my-4">@lang('Related Products')</h4>
@@ -366,7 +323,7 @@
         $('.nav-item').removeClass('active')
         $(this).addClass('active')
         $('.tab-content').removeClass('active')
-        let id = $(this).children('a').attr('href')
+        let id = $(this).attr('data-id')
         $(id).addClass('active')
       })
     })

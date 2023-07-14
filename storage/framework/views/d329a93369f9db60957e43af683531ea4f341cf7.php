@@ -72,11 +72,6 @@
                   <h5><?php echo app('translator')->get('Related Products'); ?></h5>
                 </a>
               </li>
-              <li>
-                <a href="#tab_4" data-toggle="tab">
-                  <h5><?php echo app('translator')->get('Attribute product'); ?></h5>
-                </a>
-              </li>
               <button type="submit" class="btn btn-primary btn-sm pull-right">
                 <i class="fa fa-floppy-o"></i>
                 <?php echo app('translator')->get('Save'); ?>
@@ -440,42 +435,6 @@
                 </div>
 
               </div>
-              <div class="tab-pane " id="tab_4">
-                <div class="row">
-                  <div class="col-md-12">
-                    <hr style="border-top: dashed 2px #a94442; margin: 10px 0px;">
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <input class="btn btn-warning btn-sm add-gallery-video" data-toggle="tooltip"
-                        title="Nhấn để chọn thêm màu sắc" type="button" value="Thêm màu sắc" />
-                    </div>
-                    <div class="list-gallery-video">
-                      <?php if(isset($detail->json_params->color)): ?>
-                        <?php $__currentLoopData = $detail->json_params->color; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                          <?php if($item->value != ''): ?>
-                            <div class="col-lg-2 col-md-3 col-sm-4 mb-1 gallery-image my-15">
-                              <input type="text" style="margin-bottom: 20px" name="json_params[color][<?php echo e($key); ?>][name]" 
-                              class="form-control" id="gallery_video_title_<?php echo e($key); ?>" value="<?php echo e($item->name); ?>" placeholder="Tên màu sắc">
-                              <img class="img-width" src="<?php echo e($item->value); ?>">
-                              <input type="text" value="<?php echo e($item->value); ?>" name="json_params[color][<?php echo e($key); ?>][value]" class="hidden" id="gallery_image_<?php echo e($key); ?>">
-                              <div class="btn-action">
-                                <span class="btn btn-sm btn-success btn-upload lfm mr-5"
-                                  data-input="gallery_image_<?php echo e($key); ?>" data-type="cms-image">
-                                  <i class="fa fa-upload"></i>
-                                </span>
-                                <span class="btn btn-sm btn-danger btn-remove">
-                                  <i class="fa fa-trash"></i>
-                                </span>
-                              </div>
-                            </div>
-                          <?php endif; ?>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                      <?php endif; ?>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -692,10 +651,14 @@
       });
 
       // Delete image
-      $('.btn-remove').on('click', '.btn-remove', function() {
+      // $('.btn-remove').on('click', '.btn-remove', function() {
+      //   console.log(123)
+      //   $(this).parents('.gallery-image').remove();
+      // });
+      $('.list-gallery-image').on('click', '.btn-remove', function() {
         // if (confirm("<?php echo app('translator')->get('confirm_action'); ?>")) {
-        $(this).parents('.gallery-image').remove();
-        
+        let _root = $(this).closest('.gallery-image');
+        _root.remove();
         // }
       });
 

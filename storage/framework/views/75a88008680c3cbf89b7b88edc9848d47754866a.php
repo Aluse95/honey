@@ -8,13 +8,12 @@
   crossorigin="anonymous"
   referrerpolicy="no-referrer"
 />
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
-/>
 <link rel="stylesheet" href="<?php echo e(asset('themes/frontend/honey/css/bootstrap.min.css')); ?>" type="text/css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+<link rel="preload" as="style" href="<?php echo e(asset('themes/frontend/honey/css/main.css')); ?>" type="text/css" />
+<link rel="preload" as="style" href="<?php echo e(asset('themes/frontend/honey/css/responsive.css')); ?>" type="text/css" />
+<link rel="stylesheet" href="<?php echo e(asset('themes/frontend/honey/css/main.css')); ?>" type="text/css" />
 <link rel="stylesheet" href="<?php echo e(asset('themes/frontend/honey/css/slick.css')); ?>" type="text/css" />
 <link rel="stylesheet" href="<?php echo e(asset('themes/frontend/honey/css/slick-theme.css')); ?>" type="text/css" />
-<link rel="stylesheet" href="<?php echo e(asset('themes/frontend/honey/css/main.css')); ?>" type="text/css" />
 <link rel="stylesheet" href="<?php echo e(asset('themes/frontend/honey/css/responsive.css')); ?>" type="text/css" />
 <?php /**PATH D:\xampp\htdocs\honey\resources\views/frontend/panels/styles.blade.php ENDPATH**/ ?>

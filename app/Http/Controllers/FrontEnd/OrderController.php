@@ -94,6 +94,7 @@ class OrderController extends Controller
     public function addToCart(Request $request)
     {
         $id = $request->get('id')  ?? null;
+        $size = $request->get('size')  ?? null;
         $quantity = $request->get('quantity')  ?? 1;
         $product = CmsProduct::findOrFail($id);
 
@@ -105,8 +106,8 @@ class OrderController extends Controller
             $cart[$id] = [
                 "title" => $product->title,
                 "quantity" => $quantity,
+                "size" => $size,
                 "price" => $product->json_params->price ?? null,
-                "color" => '',
                 "image" => $product->image,
                 "image_thumb" => $product->image_thumb
             ];
@@ -120,7 +121,7 @@ class OrderController extends Controller
         if ($request->id && $request->quantity) {
             $cart = session()->get('cart');
             $cart[$request->id]["quantity"] = $request->quantity;
-            $cart[$request->id]["color"] = $request->color;
+            // $cart[$request->id]["size"] = $request->size;
             session()->put('cart', $cart);
             session()->flash('successMessage', __('Cart updated successfully!'));
         }
@@ -181,7 +182,7 @@ class OrderController extends Controller
                 $order_detail_params['item_id'] = $id;
                 $order_detail_params['quantity'] = $details['quantity'] ?? 1;
                 $order_detail_params['price'] = $details['price'] ?? null;
-                $order_detail_params['color'] = $details['color'] ?? null;
+                $order_detail_params['size'] = $details['size'] ?? null;
                 array_push($data, $order_detail_params);
             }
 
